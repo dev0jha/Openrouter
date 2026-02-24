@@ -1,17 +1,12 @@
-import { Elysia } from "elysia";
+import { cors } from "@elysiajs/cors";
 
-import { app as apiKeysApp } from "./modules/apikeys";
-import { app as authApp } from "./modules/auth";
-import { app as modelsApp } from "./modules/models";
-import { app as paymentApp } from "./modules/payment";
+import { app } from "./app";
 
-const app = new Elysia()
-  .use(authApp)
-  .use(modelsApp)
-  .use(apiKeysApp)
-  .use(paymentApp)
+app
+  .use(
+    cors({
+      origin: "http://localhost:3001",
+      credentials: true,
+    })
+  )
   .listen(3000);
-
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
