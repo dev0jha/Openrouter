@@ -48,7 +48,8 @@
       "dependencies": {
         "@elysiajs/cors": "^1.4.1",
         "@elysiajs/jwt": "latest",
-        "db": "workspace:*",
+        "db": "*",
+        "dotenv": "^17.3.1",
         "elysia": "latest",
       },
       "devDependencies": {
