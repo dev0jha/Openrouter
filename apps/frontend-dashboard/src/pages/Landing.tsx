@@ -68,138 +68,122 @@ export function Landing() {
   const modelCount = modelsQuery.data?.models?.length ?? 200;
 
   return (
-    <div className="dark bg-background text-foreground min-h-screen">
+    <div className="dark text-foreground relative min-h-screen bg-[#121212]">
+      {/* Decorative left border */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden h-full w-10 -translate-x-14 border-r border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
+
       {/* Navigation */}
-      <header className="border-border/50 bg-background/80 fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <div className="flex items-center gap-2.5">
-            <div className="bg-primary/10 border-primary/20 flex size-8 items-center justify-center rounded-lg border">
-              <Zap className="text-primary size-3.5" />
+      <header className="border-border/40 fixed inset-x-0 top-0 z-50 border-b bg-transparent">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
+          <div className="flex items-center gap-3">
+            <div className="bg-foreground/5 border-border flex size-10 items-center justify-center border">
+              <Zap className="text-foreground size-4" strokeWidth={1.5} />
             </div>
-            <span className="text-sm font-semibold tracking-tight">
+            <span className="text-lg font-light tracking-widest uppercase">
               OpenRouter
             </span>
           </div>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/signin">Sign in</Link>
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hover:bg-foreground/5"
+              render={(props) => <Link to="/signin" {...props} />}
+            >
+              Sign in
             </Button>
-            <Button size="sm" asChild>
-              <Link to="/signup">
-                Get started
-                <ArrowRight className="size-3.5" />
-              </Link>
+            <Button
+              size="sm"
+              className="bg-foreground text-background hover:bg-foreground/90"
+              render={(props) => <Link to="/signup" {...props} />}
+            >
+              Get started
+              <ArrowRight className="size-3.5" />
             </Button>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-32 pb-24">
-        {/* Background effects */}
-        <div
-          className="absolute h-[800px] w-[800px] rounded-full opacity-[0.06] blur-[150px]"
-          style={{
-            background:
-              "radial-gradient(circle, oklch(0.7 0.15 55) 0%, transparent 70%)",
-            top: "-20%",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.3]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, oklch(1 0 0 / 0.06) 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        <div className="relative mx-auto max-w-6xl px-6 text-center">
-          <div className="border-border/60 bg-card/50 text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium backdrop-blur-sm">
-            <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
+      <section className="relative overflow-hidden pt-40 pb-32">
+        <div className="relative mx-auto max-w-7xl px-8">
+          <div className="border-border/60 bg-foreground/5 text-muted-foreground mb-12 inline-flex items-center gap-2.5 border px-5 py-2 text-xs font-light tracking-wider uppercase backdrop-blur-sm">
+            <span className="size-1 bg-emerald-400" />
             {modelCount}+ models available
           </div>
 
-          <h1 className="mx-auto max-w-4xl text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mx-auto mb-8 max-w-5xl text-6xl leading-[1.1] font-light tracking-tight sm:text-7xl lg:text-8xl">
             One API for{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg, oklch(0.85 0.15 55), oklch(0.7 0.2 330), oklch(0.65 0.25 264))",
-              }}
-            >
-              every AI model
-            </span>
+            <span className="font-normal italic">every AI model</span>
           </h1>
 
-          <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg leading-relaxed sm:text-xl">
+          <p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed font-light">
             Route to the best models from OpenAI, Anthropic, Google, Meta, and
             more. One integration, infinite possibilities.
           </p>
 
-          <div className="mt-10 flex items-center justify-center gap-4">
-            <Button size="lg" asChild className="h-12 px-8 text-base">
-              <Link to="/signup">
-                Start building
-                <ArrowRight className="size-4" />
-              </Link>
+          <div className="mt-16 flex items-center gap-5">
+            <Button
+              size="lg"
+              className="bg-foreground text-background hover:bg-foreground/90 h-14 px-10 text-base"
+              render={(props) => <Link to="/signup" {...props} />}
+            >
+              Start building
+              <ArrowRight className="size-4" />
             </Button>
             <Button
               variant="outline"
               size="lg"
-              asChild
-              className="h-12 px-8 text-base"
+              className="border-border hover:bg-foreground/5 h-14 px-10 text-base"
+              render={(props) => <Link to="/dashboard" {...props} />}
             >
-              <Link to="/dashboard">View dashboard</Link>
+              View dashboard
             </Button>
           </div>
 
           {/* Code snippet */}
-          <div className="mx-auto mt-16 max-w-2xl">
-            <div className="border-border/50 bg-card/60 overflow-hidden rounded-xl border text-left shadow-2xl backdrop-blur-sm">
-              <div className="border-border/50 flex items-center gap-2 border-b px-4 py-3">
-                <span className="size-3 rounded-full bg-red-500/60" />
-                <span className="size-3 rounded-full bg-yellow-500/60" />
-                <span className="size-3 rounded-full bg-green-500/60" />
-                <span className="text-muted-foreground ml-2 font-mono text-xs">
+          <div className="mx-auto mt-24 max-w-3xl">
+            <div className="border-border bg-foreground/5 overflow-hidden border text-left">
+              <div className="border-border flex items-center gap-2 border-b px-6 py-4">
+                <span className="size-2.5 bg-red-500/40" />
+                <span className="size-2.5 bg-yellow-500/40" />
+                <span className="size-2.5 bg-green-500/40" />
+                <span className="text-muted-foreground ml-3 font-mono text-xs tracking-wider">
                   request.ts
                 </span>
               </div>
-              <pre className="overflow-x-auto p-5 font-mono text-sm leading-relaxed">
+              <pre className="overflow-x-auto p-8 font-mono text-sm leading-loose">
                 <code>
                   <span className="text-muted-foreground">
                     {"// Just change the base URL — that's it\n"}
                   </span>
-                  <span className="text-blue-400">{"const "}</span>
+                  <span className="text-blue-300">{"const "}</span>
                   <span className="text-foreground">{"response "}</span>
                   <span className="text-muted-foreground">{"= "}</span>
-                  <span className="text-blue-400">{"await "}</span>
-                  <span className="text-yellow-300">{"fetch"}</span>
+                  <span className="text-blue-300">{"await "}</span>
+                  <span className="text-yellow-200">{"fetch"}</span>
                   <span className="text-foreground">{"(\n"}</span>
-                  <span className="text-emerald-400">
+                  <span className="text-emerald-300">
                     {'  "https://openrouter.ai/api/v1/chat"'}
                   </span>
                   <span className="text-foreground">{",\n  { "}</span>
                   <span className="text-foreground">{"method: "}</span>
-                  <span className="text-emerald-400">{'"POST"'}</span>
+                  <span className="text-emerald-300">{'"POST"'}</span>
                   <span className="text-foreground">
                     {",\n    body: JSON."}
                   </span>
-                  <span className="text-yellow-300">{"stringify"}</span>
+                  <span className="text-yellow-200">{"stringify"}</span>
                   <span className="text-foreground">{"({\n"}</span>
                   <span className="text-foreground">{"      model: "}</span>
-                  <span className="text-emerald-400">
+                  <span className="text-emerald-300">
                     {'"anthropic/claude-sonnet-4-5"'}
                   </span>
                   <span className="text-foreground">
                     {",\n      messages: [{ role: "}
                   </span>
-                  <span className="text-emerald-400">{'"user"'}</span>
+                  <span className="text-emerald-300">{'"user"'}</span>
                   <span className="text-foreground">{", content: "}</span>
-                  <span className="text-emerald-400">{'"Hello!"'}</span>
+                  <span className="text-emerald-300">{'"Hello!"'}</span>
                   <span className="text-foreground">
                     {" }]\n    })\n  }\n)"}
                   </span>
@@ -211,29 +195,32 @@ export function Landing() {
       </section>
 
       {/* Features */}
-      <section className="border-border/30 border-t py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+      <section className="border-border/20 border-t py-32">
+        <div className="mx-auto max-w-7xl px-8">
+          <div className="mb-20 max-w-2xl">
+            <h2 className="mb-6 text-5xl font-light tracking-tight">
               Everything you need to ship AI
             </h2>
-            <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-lg">
+            <p className="text-muted-foreground text-lg leading-relaxed font-light">
               Built for developers who want to move fast without being locked
               into a single provider.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="bg-border grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group border-border/40 bg-card/30 hover:border-border/80 hover:bg-card/60 rounded-xl border p-6 transition-all duration-300"
+                className="group hover:bg-foreground/5 bg-[#121212] p-10 transition-all duration-300"
               >
-                <div className="bg-primary/5 border-border/50 group-hover:bg-primary/10 mb-4 flex size-10 items-center justify-center rounded-lg border transition-colors">
-                  <feature.icon className="text-muted-foreground group-hover:text-primary size-5 transition-colors" />
-                </div>
-                <h3 className="mb-2 text-sm font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <feature.icon
+                  className="text-foreground/60 mb-6 size-6"
+                  strokeWidth={1.5}
+                />
+                <h3 className="mb-3 text-base font-medium tracking-wide">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed font-light">
                   {feature.description}
                 </p>
               </div>
@@ -244,29 +231,29 @@ export function Landing() {
 
       {/* Models preview */}
       {modelsQuery.data?.models && modelsQuery.data.models.length > 0 && (
-        <section className="border-border/30 border-t py-24">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+        <section className="border-border/20 border-t py-32">
+          <div className="mx-auto max-w-7xl px-8">
+            <div className="mb-16 max-w-2xl">
+              <h2 className="mb-6 text-5xl font-light tracking-tight">
                 Popular models
               </h2>
-              <p className="text-muted-foreground mt-4 text-lg">
+              <p className="text-muted-foreground text-lg leading-relaxed font-light">
                 Access the latest and greatest from every major provider.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="bg-border grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3">
               {modelsQuery.data.models.slice(0, 9).map((model) => (
                 <div
                   key={model.id}
-                  className="border-border/40 bg-card/20 hover:border-border/80 flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors"
+                  className="hover:bg-foreground/5 flex items-center gap-4 bg-[#121212] px-8 py-6 transition-colors"
                 >
-                  <div className="bg-primary/5 border-border/50 text-muted-foreground flex size-8 items-center justify-center rounded-md border text-xs font-bold">
+                  <div className="bg-foreground/5 border-border text-muted-foreground flex size-10 items-center justify-center border text-xs font-light">
                     {model.company.name.charAt(0)}
                   </div>
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">{model.name}</p>
-                    <p className="text-muted-foreground text-xs">
+                    <p className="text-muted-foreground text-xs font-light tracking-wide">
                       {model.company.name}
                     </p>
                   </div>
@@ -278,31 +265,37 @@ export function Landing() {
       )}
 
       {/* CTA */}
-      <section className="border-border/30 border-t py-24">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Ready to start building?
-          </h2>
-          <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-lg">
-            Create a free account and start making API calls in minutes.
-          </p>
-          <Button size="lg" asChild className="mt-8 h-12 px-8 text-base">
-            <Link to="/signup">
+      <section className="border-border/20 border-t py-32">
+        <div className="mx-auto max-w-7xl px-8">
+          <div className="max-w-2xl">
+            <h2 className="mb-6 text-5xl font-light tracking-tight">
+              Ready to start building?
+            </h2>
+            <p className="text-muted-foreground mb-10 text-lg leading-relaxed font-light">
+              Create a free account and start making API calls in minutes.
+            </p>
+            <Button
+              size="lg"
+              className="bg-foreground text-background hover:bg-foreground/90 h-14 px-10 text-base"
+              render={(props) => <Link to="/signup" {...props} />}
+            >
               Create free account
               <ArrowRight className="size-4" />
-            </Link>
-          </Button>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-border/30 border-t py-8">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
-          <div className="flex items-center gap-2">
-            <Zap className="text-muted-foreground size-3.5" />
-            <span className="text-muted-foreground text-xs">OpenRouter</span>
+      <footer className="border-border/20 border-t py-10">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-8">
+          <div className="flex items-center gap-2.5">
+            <Zap className="text-muted-foreground size-4" strokeWidth={1.5} />
+            <span className="text-muted-foreground text-xs tracking-widest uppercase">
+              OpenRouter
+            </span>
           </div>
-          <p className="text-muted-foreground text-xs">
+          <p className="text-muted-foreground text-xs font-light">
             &copy; 2026 OpenRouter. All rights reserved.
           </p>
         </div>

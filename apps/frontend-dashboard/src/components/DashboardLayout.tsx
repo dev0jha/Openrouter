@@ -14,21 +14,24 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
   return (
-    <div className="dark bg-background flex min-h-screen">
+    <div className="dark relative flex min-h-screen bg-[#121212]">
+      {/* Decorative left border */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden h-full w-10 -translate-x-14 border-r border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
+
       {/* Sidebar */}
-      <aside className="border-border/50 bg-card/30 flex w-64 flex-col border-r">
+      <aside className="border-border bg-foreground/5 flex w-72 flex-col border-r">
         {/* Brand */}
-        <div className="border-border/50 flex h-16 items-center gap-2.5 border-b px-5">
-          <div className="bg-primary/10 border-primary/20 flex size-8 items-center justify-center rounded-lg border">
-            <Zap className="text-primary size-3.5" />
+        <div className="border-border flex h-20 items-center gap-3 border-b px-6">
+          <div className="bg-foreground/5 border-border flex size-10 items-center justify-center border">
+            <Zap className="text-foreground size-4" strokeWidth={1.5} />
           </div>
-          <span className="text-foreground text-sm font-semibold tracking-tight">
+          <span className="text-foreground text-lg font-light tracking-widest uppercase">
             OpenRouter
           </span>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1 px-3 py-4">
+        <nav className="flex-1 space-y-1 px-4 py-6">
           {navItems.map((item) => {
             const isActive = location.pathname === item.href;
             return (
@@ -36,13 +39,13 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 to={item.href}
                 className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                  "flex items-center gap-4 border-l-2 py-3 pr-4 pl-5 text-sm font-light tracking-wide transition-all",
                   isActive
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                    ? "border-foreground text-foreground bg-foreground/5"
+                    : "text-muted-foreground hover:text-foreground hover:border-muted-foreground/30 border-transparent"
                 )}
               >
-                <item.icon className="size-4" />
+                <item.icon className="size-4" strokeWidth={1.5} />
                 {item.label}
               </Link>
             );
@@ -50,12 +53,12 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         </nav>
 
         {/* Footer */}
-        <div className="border-border/50 border-t px-3 py-4">
+        <div className="border-border border-t px-4 py-6">
           <Link
             to="/signin"
-            className="text-muted-foreground hover:text-foreground hover:bg-accent/50 flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
+            className="text-muted-foreground hover:text-foreground hover:bg-foreground/5 flex items-center gap-4 border-l-2 border-transparent py-3 pr-4 pl-5 text-sm font-light tracking-wide transition-all"
           >
-            <LogOut className="size-4" />
+            <LogOut className="size-4" strokeWidth={1.5} />
             Sign out
           </Link>
         </div>
@@ -63,7 +66,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
       {/* Main content */}
       <main className="flex-1 overflow-auto">
-        <div className="mx-auto max-w-5xl px-8 py-8">{children}</div>
+        <div className="mx-auto max-w-6xl px-12 py-12">{children}</div>
       </main>
     </div>
   );

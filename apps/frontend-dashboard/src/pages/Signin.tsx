@@ -57,65 +57,35 @@ export function Signin() {
   });
 
   return (
-    <div className="dark bg-background relative flex min-h-screen items-center justify-center overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div
-        className="absolute h-[600px] w-[600px] animate-pulse rounded-full opacity-[0.07] blur-[120px]"
-        style={{
-          background:
-            "radial-gradient(circle, oklch(0.6 0.2 264) 0%, transparent 70%)",
-          top: "-10%",
-          left: "-5%",
-          animationDuration: "8s",
-        }}
-      />
-      <div
-        className="absolute h-[500px] w-[500px] animate-pulse rounded-full opacity-[0.05] blur-[100px]"
-        style={{
-          background:
-            "radial-gradient(circle, oklch(0.7 0.15 55) 0%, transparent 70%)",
-          bottom: "-15%",
-          right: "-10%",
-          animationDuration: "12s",
-          animationDelay: "2s",
-        }}
-      />
-
-      {/* Dot grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.4]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, oklch(1 0 0 / 0.08) 1px, transparent 0)",
-          backgroundSize: "32px 32px",
-        }}
-      />
+    <div className="dark relative flex min-h-screen items-center justify-center overflow-hidden bg-[#121212]">
+      {/* Decorative left border */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden h-full w-10 -translate-x-14 border-r border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[420px] px-6">
+      <div className="relative z-10 w-full max-w-120 px-8">
         {/* Brand */}
-        <div className="mb-10 flex items-center justify-center gap-2.5">
-          <div className="bg-primary/10 border-primary/20 flex size-9 items-center justify-center rounded-lg border">
-            <Zap className="text-primary size-4" />
+        <div className="mb-16 flex items-center justify-center gap-3">
+          <div className="bg-foreground/5 border-border flex size-10 items-center justify-center border">
+            <Zap className="text-foreground size-4" strokeWidth={1.5} />
           </div>
-          <span className="text-foreground text-lg font-semibold tracking-tight">
+          <span className="text-lg font-light tracking-widest uppercase">
             OpenRouter
           </span>
         </div>
 
-        <Card className="border-border/50 bg-card/80 shadow-2xl backdrop-blur-xl">
-          <CardHeader className="pb-2 text-center">
-            <CardTitle className="text-xl tracking-tight">
+        <Card className="border-border bg-foreground/5">
+          <CardHeader className="space-y-2 pb-6">
+            <CardTitle className="text-3xl font-light tracking-tight">
               Welcome back
             </CardTitle>
-            <CardDescription className="text-muted-foreground/80">
+            <CardDescription className="text-muted-foreground text-base font-light">
               Sign in to your OpenRouter account
             </CardDescription>
           </CardHeader>
 
           <CardContent>
             <form
-              className="space-y-4"
+              className="space-y-6"
               onSubmit={(e) => {
                 e.preventDefault();
                 mutation.mutate({
@@ -124,39 +94,58 @@ export function Signin() {
                 });
               }}
             >
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+              <div className="space-y-3">
+                <Label
+                  htmlFor="email"
+                  className="text-sm font-normal tracking-wide"
+                >
+                  Email
+                </Label>
                 <div className="relative">
-                  <Mail className="text-muted-foreground/60 absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+                  <Mail
+                    className="text-muted-foreground/40 absolute top-1/2 left-4 size-4 -translate-y-1/2"
+                    strokeWidth={1.5}
+                  />
                   <Input
                     id="email"
                     ref={emailRef}
                     type="email"
                     placeholder="you@example.com"
-                    className="h-10 pl-10"
+                    className="bg-background/50 border-border h-12 pl-11"
                     required
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+              <div className="space-y-3">
+                <Label
+                  htmlFor="password"
+                  className="text-sm font-normal tracking-wide"
+                >
+                  Password
+                </Label>
                 <div className="relative">
-                  <Lock className="text-muted-foreground/60 absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+                  <Lock
+                    className="text-muted-foreground/40 absolute top-1/2 left-4 size-4 -translate-y-1/2"
+                    strokeWidth={1.5}
+                  />
                   <Input
                     id="password"
                     ref={passwordRef}
                     type="password"
                     placeholder="Enter your password"
-                    className="h-10 pl-10"
+                    className="bg-background/50 border-border h-12 pl-11"
                     required
                   />
                 </div>
               </div>
 
               {mutation.isError && (
-                <div className="text-destructive bg-destructive/10 border-destructive/20 flex items-start gap-2.5 rounded-lg border px-3.5 py-3 text-sm">
-                  <AlertCircle className="mt-0.5 size-4 shrink-0" />
+                <div className="text-destructive bg-destructive/10 border-destructive/30 flex items-start gap-3 border px-4 py-3.5 text-sm font-light">
+                  <AlertCircle
+                    className="mt-0.5 size-4 shrink-0"
+                    strokeWidth={1.5}
+                  />
                   <span>
                     {mutation.error?.message ||
                       "Something went wrong. Please try again."}
@@ -165,38 +154,44 @@ export function Signin() {
               )}
 
               {mutation.isSuccess && (
-                <div className="flex items-start gap-2.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-3 text-sm text-emerald-400">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0" />
+                <div className="flex items-start gap-3 border border-emerald-500/30 bg-emerald-500/10 px-4 py-3.5 text-sm font-light text-emerald-400">
+                  <CheckCircle2
+                    className="mt-0.5 size-4 shrink-0"
+                    strokeWidth={1.5}
+                  />
                   <span>Signed in! Redirecting to dashboard...</span>
                 </div>
               )}
 
               <Button
                 type="submit"
-                className="mt-2 h-10 w-full"
+                className="bg-foreground text-background hover:bg-foreground/90 mt-4 h-12 w-full"
                 disabled={mutation.isPending || mutation.isSuccess}
               >
                 {mutation.isPending ? (
                   <>
-                    <Loader2 className="size-4 animate-spin" />
+                    <Loader2
+                      className="size-4 animate-spin"
+                      strokeWidth={1.5}
+                    />
                     Signing in...
                   </>
                 ) : (
                   <>
                     Sign in
-                    <ArrowRight className="size-4" />
+                    <ArrowRight className="size-4" strokeWidth={1.5} />
                   </>
                 )}
               </Button>
             </form>
           </CardContent>
 
-          <CardFooter className="justify-center">
-            <p className="text-muted-foreground text-sm">
+          <CardFooter className="justify-center pt-2 pb-8">
+            <p className="text-muted-foreground text-sm font-light">
               Don't have an account?{" "}
               <Link
                 to="/signup"
-                className="text-foreground font-medium underline-offset-4 transition-colors hover:underline"
+                className="text-foreground font-normal underline-offset-4 transition-colors hover:underline"
               >
                 Sign up
               </Link>
