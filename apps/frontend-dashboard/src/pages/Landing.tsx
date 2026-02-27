@@ -72,6 +72,9 @@ export function Landing() {
       {/* Decorative left border */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden h-full w-10 -translate-x-14 border-r border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
 
+      {/* Decorative right border */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden h-full w-10 translate-x-14 border-l border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(45deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
+
       {/* Navigation */}
       <header className="border-border/40 fixed inset-x-0 top-0 z-50 border-b bg-transparent">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
@@ -106,7 +109,7 @@ export function Landing() {
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-40 pb-32">
-        <div className="relative mx-auto max-w-7xl px-8">
+        <div className="relative mx-auto max-w-7xl px-8 text-center">
           <div className="border-border/60 bg-foreground/5 text-muted-foreground mb-12 inline-flex items-center gap-2.5 border px-5 py-2 text-xs font-light tracking-wider uppercase backdrop-blur-sm">
             <span className="size-1 bg-emerald-400" />
             {modelCount}+ models available
@@ -122,7 +125,7 @@ export function Landing() {
             more. One integration, infinite possibilities.
           </p>
 
-          <div className="mt-16 flex items-center gap-5">
+          <div className="mt-16 flex items-center justify-center gap-5">
             <Button
               size="lg"
               className="bg-foreground text-background hover:bg-foreground/90 h-14 px-10 text-base"

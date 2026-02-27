@@ -61,6 +61,50 @@ export function Signin() {
       {/* Decorative left border */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden h-full w-10 -translate-x-14 border-r border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
 
+      {/* Decorative right border */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden h-full w-10 translate-x-14 border-l border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(45deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
+
+      {/* SVG Beams */}
+      <svg
+        className="pointer-events-none absolute inset-0 z-0"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+            <stop offset="50%" stopColor="rgba(255,255,255,0.1)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </linearGradient>
+        </defs>
+        <line
+          x1="0"
+          y1="20%"
+          x2="100%"
+          y2="20%"
+          stroke="url(#beam-gradient)"
+          strokeWidth="1"
+          opacity="0.3"
+        />
+        <line
+          x1="0"
+          y1="50%"
+          x2="100%"
+          y2="50%"
+          stroke="url(#beam-gradient)"
+          strokeWidth="1"
+          opacity="0.2"
+        />
+        <line
+          x1="0"
+          y1="80%"
+          x2="100%"
+          y2="80%"
+          stroke="url(#beam-gradient)"
+          strokeWidth="1"
+          opacity="0.3"
+        />
+      </svg>
+
       {/* Content */}
       <div className="relative z-10 w-full max-w-120 px-8">
         {/* Brand */}
@@ -73,8 +117,14 @@ export function Signin() {
           </span>
         </div>
 
-        <Card className="border-border bg-foreground/5">
-          <CardHeader className="space-y-2 pb-6">
+        <Card className="border-border bg-foreground/5 relative overflow-hidden">
+          {/* Card corner accents */}
+          <div className="border-foreground/20 absolute top-0 left-0 h-8 w-8 border-t-2 border-l-2" />
+          <div className="border-foreground/20 absolute top-0 right-0 h-8 w-8 border-t-2 border-r-2" />
+          <div className="border-foreground/20 absolute bottom-0 left-0 h-8 w-8 border-b-2 border-l-2" />
+          <div className="border-foreground/20 absolute right-0 bottom-0 h-8 w-8 border-r-2 border-b-2" />
+
+          <CardHeader className="space-y-3 pt-10 pb-8">
             <CardTitle className="text-3xl font-light tracking-tight">
               Welcome back
             </CardTitle>
@@ -83,7 +133,7 @@ export function Signin() {
             </CardDescription>
           </CardHeader>
 
-          <CardContent>
+          <CardContent className="px-10">
             <form
               className="space-y-6"
               onSubmit={(e) => {
@@ -186,7 +236,7 @@ export function Signin() {
             </form>
           </CardContent>
 
-          <CardFooter className="justify-center pt-2 pb-8">
+          <CardFooter className="justify-center pt-6 pb-10">
             <p className="text-muted-foreground text-sm font-light">
               Don't have an account?{" "}
               <Link
