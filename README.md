@@ -2,6 +2,8 @@
 
 A unified AI model aggregation platform that provides a single API gateway to multiple Large Language Model (LLM) providers including OpenAI, Claude, and Gemini. Built with modern TypeScript technologies and designed for scalability.
 
+![Openrouter Preview](/public/Openrouter.png)
+
 ## 🚀 Features
 
 - **Unified API Gateway**: Single endpoint for multiple LLM providers (OpenAI, Claude, Gemini)
