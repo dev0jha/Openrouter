@@ -18,6 +18,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       {/* Decorative left border */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden h-full w-10 -translate-x-14 border-r border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(315deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
 
+      {/* Decorative right border */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden h-full w-10 translate-x-14 border-l border-[rgba(255,255,255,0.1)] bg-[repeating-linear-gradient(45deg,rgba(255,255,255,0.1)_0px,rgba(255,255,255,0.1)_1px,transparent_1px,transparent_10px)] sm:block sm:w-14" />
+
       {/* Sidebar */}
       <aside className="border-border bg-foreground/5 flex w-72 flex-col border-r">
         {/* Brand */}
